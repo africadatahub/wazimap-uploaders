@@ -8,7 +8,7 @@ TOKEN = sys.argv[2]
 OWID_FILE_URL = "https://github.com/owid/covid-19-data/raw/master/public/data/owid-covid-data.csv"
 OWID_FILE_PATH = "/tmp/owid-covid-data.csv"
 WAZIMAP_FILE_PATH = "/tmp/owid_Vaccinations_DosesReceived.csv"
-DATASET_ID = 953
+DATASET_ID = sys.argv[3]
 
 
 USE_COLS_POPULATION = ['iso_code', 'continent', 'date', 'stringency_index', 'population', 'population_density', 'median_age', 'aged_65_older', 'aged_70_older', 'gdp_per_capita',
@@ -90,5 +90,3 @@ payload = {'update': True, 'overwrite': True}
 
 wazi_r = requests.post(url, headers=headers, data=payload, files=files)
 wazi_r.raise_for_status()
-
-print(wazi_r.json())
