@@ -43,10 +43,10 @@ def load_file():
 
 
 def write_vaccines_distributed_to_date():
+    """Latest value for each area"""
     owid = load_file()
     # Initial transformation and extraction of vaccinations administered
     vac1 = owid[["Geography", "Date", "people_vaccinated"]]
-    vac1 = vac1[vac1["Date"] > "2021-02-01"]
 
     vac1 = vac1.pivot(index='Geography', columns='Date')
     vac1.columns = vac1.columns.droplevel(0)
@@ -58,7 +58,6 @@ def write_vaccines_distributed_to_date():
     vac1 = vac1.rename(columns={'LastValue': 'Count'})
 
     vac2 = owid[["Geography", "Date", "people_fully_vaccinated"]]
-    vac2 = vac2[vac2["Date"] > "2021-02-01"]
 
     vac2 = vac2.pivot(index='Geography', columns='Date')
     vac2.columns = vac2.columns.droplevel(0)
